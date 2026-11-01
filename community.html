@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Her Community | HerRise</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #100b10;
+            color: #f5e8ee;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #382431;
+        }
+
+        .logo {
+            color: #e8a9c2;
+            font-size: 23px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #e8a9c2;
+            text-decoration: none;
+        }
+
+        main {
+            width: 90%;
+            max-width: 950px;
+            margin: 35px auto;
+        }
+
+        .welcome {
+            text-align: center;
+            padding: 35px 20px;
+            background: #1c121b;
+            border: 1px solid #63394f;
+            border-radius: 18px;
+        }
+
+        .welcome h1 {
+            color: #e8a9c2;
+        }
+
+        .welcome p {
+            color: #cdbbc5;
+            line-height: 1.7;
+        }
+
+        .community-section {
+            margin-top: 28px;
+            padding: 22px;
+            background: #1c121b;
+            border: 1px solid #382431;
+            border-radius: 16px;
+        }
+
+        .community-section h2 {
+            color: #e8a9c2;
+        }
+
+        .community-card {
+            padding: 16px;
+            margin-top: 14px;
+            background: #281b27;
+            border-radius: 12px;
+        }
+
+        .community-card h3 {
+            margin-top: 0;
+        }
+
+        .community-card p {
+            color: #cdbbc5;
+            line-height: 1.6;
+        }
+
+#postInput {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    background: #100b10;
+    color: #f5e8ee;
+    border: 1px solid #63394f;
+    border-radius: 12px;
+    resize: vertical;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+#postInput:focus {
+    outline: none;
+    border-color: #e8a9c2;
+}
+
+.community-section button {
+    background: #63394f;
+    color: #fff;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.community-section button:hover {
+    background: #80506a;
+}
+
+        .coming-soon {
+            color: #d99bb5;
+            font-size: 13px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #a9909e;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                width: 92%;
+                margin: 20px auto;
+            }
+
+            header {
+                padding: 15px 5%;
+            }
+
+            .welcome {
+                padding: 25px 15px;
+            }
+
+            .community-section {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="index.html" class="logo">HerRise ✧</a>
+    <a href="index.html" class="back-link">⌂ Home</a>
+</header>
+
+<main>
+
+    <section class="welcome">
+        <h1>Her Community ♡</h1>
+        <p>
+            A space to connect, share ideas, discover interests,
+            and grow together.
+        </p>
+    </section>
+
+<section class="community-section" id="authSection">
+    <h2>Welcome to HerRise ♡</h2>
+
+    <input
+        type="email"
+        id="authEmail"
+        placeholder="Email address"
+    >
+
+    <input
+        type="password"
+        id="authPassword"
+        placeholder="Password"
+    >
+
+    <button onclick="signUp()">Create Account</button>
+    <button onclick="signIn()">Log In</button>
+    <button onclick="signOut()">Log Out</button>
+
+    <p id="authMessage"></p>
+</section>
+
+<section class="community-section">
+    <h2>Share Your Thoughts ♡</h2>
+<input
+    type="text"
+    id="nicknameInput"
+    placeholder="Choose a nickname..."
+    maxlength="20"
+>
+
+    <textarea
+        id="postInput"
+        placeholder="Write something you'd like to share..."
+        rows="4"
+    ></textarea>
+
+    <button onclick="addPost()">Publish ✧</button>
+
+    <div id="postsList"></div>
+</section>
+    <section class="community-section">
+        <h2>Explore Communities ✧</h2>
+
+        <div class="community-card">
+            <h3>📚 Study & Learning</h3>
+            <p>Share learning ideas and celebrate your progress.</p>
+            <span class="coming-soon">Coming soon</span>
+        </div>
+
+        <div class="community-card">
+            <h3>🎨 Art & Creativity</h3>
+            <p>Explore creativity, design, photography, and ideas.</p>
+            <span class="coming-soon">Coming soon</span>
+        </div>
+
+        <div class="community-card">
+            <h3>💻 Technology & Coding</h3>
+            <p>Discover technology and learn new skills together.</p>
+            <span class="coming-soon">Coming soon</span>
+        </div>
+
+        <div class="community-card">
+            <h3>🌷 Personal Growth</h3>
+            <p>Talk about goals, habits, confidence, and self-development.</p>
+            <span class="coming-soon">Coming soon</span>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    HerRise © 2026 — Grow together ♡
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+
+</script>
+
+<script>
+let posts = JSON.parse(localStorage.getItem("herRiseCommunityPosts") || "[]");
+
+posts = posts.map(post => {
+    if (typeof post === "string") {
+        return { text: post, likes: 0, comments: [] };
+    }
+
+   return {
+    text: post.text,
+    nickname: post.nickname || "Anonymous",
+    likes: post.likes || 0,
+    comments: post.comments || []
+};
+});
+
+function renderPosts() {
+    const postsList = document.getElementById("postsList");
+    postsList.innerHTML = "";
+
+    posts.forEach((post, index) => {
+        const card = document.createElement("div");
+        card.className = "community-card";
+
+const userInfo = document.createElement("h4");
+userInfo.textContent = post.avatar + " " + (post.nickname || "Anonymous");
+
+card.appendChild(userInfo);
+        const text = document.createElement("p");
+        text.textContent = post.text;
+
+const likeButton = document.createElement("button");
+likeButton.textContent = `♡ Like (${post.likes})`;
+
+likeButton.onclick = function () {
+    post.likes++;
+    savePosts();
+};
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.onclick = function () {
+            posts.splice(index, 1);
+            savePosts();
+        };
+
+const commentsArea = document.createElement("div");
+
+post.comments.forEach((comment, commentIndex) => {
+    const commentItem = document.createElement("p");
+    commentItem.textContent = "♡ " + comment;
+
+    const deleteComment = document.createElement("button");
+    deleteComment.textContent = "Delete";
+
+    deleteComment.onclick = function () {
+        post.comments.splice(commentIndex, 1);
+        savePosts();
+    };
+
+    commentsArea.appendChild(commentItem);
+    commentsArea.appendChild(deleteComment);
+});
+
+const commentInput = document.createElement("input");
+commentInput.placeholder = "Write a comment...";
+
+const commentButton = document.createElement("button");
+commentButton.textContent = "Comment";
+
+commentButton.onclick = function () {
+    const comment = commentInput.value.trim();
+
+    if (comment === "") return;
+
+    post.comments.push(comment);
+    savePosts();
+};
+
+        card.appendChild(text);
+card.appendChild(likeButton);
+
+card.appendChild(commentsArea);
+card.appendChild(commentInput);
+card.appendChild(commentButton);
+
+card.appendChild(deleteButton);
+postsList.appendChild(card);
+    });
+}
+
+function addPost() {
+    const input = document.getElementById("postInput");
+    const post = input.value.trim();
+
+    if (post === "") {
+        alert("Please write something first.");
+        return;
+    }
+
+    const nickname =
+        document.getElementById("nicknameInput").value.trim() || "Anonymous";
+
+    posts.unshift({
+        text: post,
+        nickname: nickname,
+        likes: 0,
+        comments: []
+    });
+
+    input.value = "";
+    savePosts();
+}
+   
+function savePosts() {
+    localStorage.setItem("herRiseCommunityPosts", JSON.stringify(posts));
+    renderPosts();
+}
+
+window.addEventListener("DOMContentLoaded", renderPosts);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://rbkzqvrilpqsltalburh.supabase.co";
+const SUPABASE_KEY = "sb_publishable_76lr6mKfZn5ivjbhvZfDFw_-6zVqwAw";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+</script>
+
+<script>
+async function signUp() {
+    const email = document.getElementById("authEmail").value.trim();
+    const password = document.getElementById("authPassword").value;
+    const message = document.getElementById("authMessage");
+
+    if (!email || !password) {
+        message.textContent = "Please enter your email and password.";
+        return;
+    }
+
+    const { data, error } = await supabaseClient.auth.signUp({
+        email: email,
+        password: password
+    });
+
+    message.textContent = error
+        ? error.message
+        : "Account created! Check your email to confirm your account.";
+}
+
+async function signIn() {
+    const email = document.getElementById("authEmail").value.trim();
+    const password = document.getElementById("authPassword").value;
+    const message = document.getElementById("authMessage");
+
+    const { error } = await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password
+    });
+
+    message.textContent = error
+        ? error.message
+        : "Welcome to HerRise!";
+}
+
+async function signOut() {
+    const { error } = await supabaseClient.auth.signOut();
+
+    document.getElementById("authMessage").textContent = error
+        ? error.message
+        : "You have logged out.";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HerRise | Daily Growth</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #110d12;
+      color: #f5eaf0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      padding: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #211720;
+      border-bottom: 1px solid #503243;
+    }
+
+    .logo {
+      color: #e5b4c9;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .back {
+      color: #e5b4c9;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 850px;
+      margin: 45px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #e5b4c9;
+      text-align: center;
+    }
+
+    .intro {
+      text-align: center;
+      color: #cbb9c4;
+      line-height: 1.8;
+      margin-bottom: 35px;
+    }
+
+    .card {
+      background: #211720;
+      border: 1px solid #503243;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      color: #e5b4c9;
+    }
+
+    .quote {
+      font-size: 20px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    button {
+      background: #80445f;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    button:hover {
+      background: #a45d7c;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #a995a2;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">HerRise ✧</div>
+
+  <select id="languageSelect" onchange="changeDailyLanguage()">
+    <option value="ar">العربية 🇸🇦</option>
+    <option value="en">English 🇬🇧</option>
+    <option value="tr">Türkçe 🇹🇷</option>
+    <option value="es">Español 🇪🇸</option>
+  </select>
+
+  <a class="back" href="index.html" id="backLink">← الرئيسية</a>
+</header>
+
+<main>
+
+  <h1 id="pageHeading">🌷 التطور اليومي</h1>
+
+  <p class="intro" id="introText">
+    مساحة صغيرة لتطوير نفسك، واكتشاف أفكار جديدة،
+    وبناء عادات تساعدك على النمو.
+</p>
+
+  <section class="card">
+    <h2 id="quoteHeading">☾ رسالة اليوم</h2>
+    <p class="quote" id="dailyQuote">
+      لا تحتاجين أن تكوني مثالية، فقط استمري في التقدم.
+    </p>
+    <button onclick="newQuote()" id="quoteButton">رسالة أخرى</button>
+  </section>
+
+  <section class="card">
+    <h2 id="goalHeading">✿ هدف اليوم</h2>
+    <p id="goalText">اختاري خطوة صغيرة تقرّبك من الشخص الذي تريدين أن تصبحيه.</p>
+    <label>
+      <input type="checkbox" id="goalCheck">
+      <span id="goalCheckText">أنجزت هدفي اليوم.</span>
+    </label>
+  </section>
+
+  <section class="card">
+    <h2 id="noteHeading">♡ اكتبي لنفسك</h2>
+    <p id="noteQuestion">ما الشيء الجميل الذي تعلمته اليوم؟</p>
+    <textarea id="dailyNote" rows="4"
+  placeholder="اكتبي أفكارك هنا..."
+  style="width:100%; box-sizing:border-box; padding:12px; border-radius:10px;">
+ </textarea>
+    <button onclick="saveNote()" id="saveButton">حفظ الملاحظة</button>
+    <p id="saveMessage"></p>
+  </section>
+
+</main>
+
+<footer>HerRise © 2026</footer>
+
+<script>
+const savedLanguage = localStorage.getItem("herRiseLanguage") || "ar";
+
+document.getElementById("languageSelect").value = savedLanguage;
+const dailyTranslations = {
+  ar: {
+    heading: "🌷 التطور اليومي",
+    intro: "مساحة صغيرة لتطوير نفسك، واكتشاف أفكار جديدة، وبناء عادات تساعدك على النمو.",
+    quoteHeading: "☾ رسالة اليوم",
+    quoteButton: "رسالة أخرى",
+    goalHeading: "✿ هدف اليوم",
+    goalText: "اختاري خطوة صغيرة تقرّبك من الشخص الذي تريدين أن تصبحيه.",
+    goalCheck: "أنجزت هدفي اليوم.",
+    noteHeading: "♡ اكتبي لنفسك",
+    noteQuestion: "ما الشيء الجميل الذي تعلمته اليوم؟",
+    notePlaceholder: "اكتبي أفكارك هنا...",
+    saveButton: "حفظ الملاحظة",
+    saved: "تم حفظ ملاحظتك ♡",
+    back: "← الرئيسية"
+  },
+  en: {
+    heading: "🌷 Daily Growth",
+    intro: "A little space to improve yourself, discover new ideas, and build helpful habits.",
+    quoteHeading: "☾ Message of the Day",
+    quoteButton: "Another Message",
+    goalHeading: "✿ Today's Goal",
+    goalText: "Choose one small step toward the person you want to become.",
+    goalCheck: "I completed my goal today.",
+    noteHeading: "♡ Write to Yourself",
+    noteQuestion: "What beautiful thing did you learn today?",
+    notePlaceholder: "Write your thoughts here...",
+    saveButton: "Save Note",
+    saved: "Your note has been saved ♡",
+    back: "← Home"
+  },
+  tr: {
+    heading: "🌷 Günlük Gelişim",
+    intro: "Kendini geliştirmek, yeni fikirler keşfetmek ve faydalı alışkanlıklar kazanmak için küçük bir alan.",
+    quoteHeading: "☾ Günün Mesajı",
+    quoteButton: "Başka Bir Mesaj",
+    goalHeading: "✿ Günün Hedefi",
+    goalText: "Olmak istediğin kişiye yaklaşmak için küçük bir adım seç.",
+    goalCheck: "Bugünkü hedefimi tamamladım.",
+    noteHeading: "♡ Kendine Yaz",
+    noteQuestion: "Bugün öğrendiğin güzel şey neydi?",
+    notePlaceholder: "Düşüncelerini buraya yaz...",
+    saveButton: "Notu Kaydet",
+    saved: "Notun kaydedildi ♡",
+    back: "← Ana Sayfa"
+  },
+  es: {
+    heading: "🌷 Crecimiento Diario",
+    intro: "Un pequeño espacio para mejorar, descubrir nuevas ideas y crear hábitos positivos.",
+    quoteHeading: "☾ Mensaje del Día",
+    quoteButton: "Otro Mensaje",
+    goalHeading: "✿ Objetivo de Hoy",
+    goalText: "Elige un pequeño paso hacia la persona que quieres llegar a ser.",
+    goalCheck: "He cumplido mi objetivo de hoy.",
+    noteHeading: "♡ Escríbete a Ti Misma",
+    noteQuestion: "¿Qué cosa bonita aprendiste hoy?",
+    notePlaceholder: "Escribe tus pensamientos aquí...",
+    saveButton: "Guardar Nota",
+    saved: "Tu nota se ha guardado ♡",
+    back: "← Inicio"
+  }
+};
+
+function changeDailyLanguage() {
+  const lang = document.getElementById("languageSelect").value;
+const t = dailyTranslations[lang];
+
+  document.getElementById("pageHeading").textContent = t.heading;
+  document.getElementById("introText").textContent = t.intro;
+  document.getElementById("quoteHeading").textContent = t.quoteHeading;
+  document.getElementById("quoteButton").textContent = t.quoteButton;
+  document.getElementById("goalHeading").textContent = t.goalHeading;
+  document.getElementById("goalText").textContent = t.goalText;
+  document.getElementById("goalCheckText").textContent = t.goalCheck;
+  document.getElementById("noteHeading").textContent = t.noteHeading;
+  document.getElementById("noteQuestion").textContent = t.noteQuestion;
+  document.getElementById("dailyNote").placeholder = t.notePlaceholder;
+  document.getElementById("saveButton").textContent = t.saveButton;
+  document.getElementById("backLink").textContent = t.back;
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+}
+
+changeDailyLanguage();
+
+const quotes = [
+    "لا تحتاجين أن تكوني مثالية، فقط استمري في التقدم.",
+    "كل مهارة عظيمة بدأت بمحاولة صغيرة.",
+    "امنحي نفسك وقتًا لتنمو.",
+    "مستقبلك يُبنى بالخطوات الصغيرة.",
+    "كوني فخورة بكل شيء تتعلمينه."
+  ];
+
+  function newQuote() {
+    const random = Math.floor(Math.random() * quotes.length);
+    document.getElementById("dailyQuote").textContent = quotes[random];
+  }
+
+  function saveNote() {
+  const note = document.getElementById("dailyNote").value;
+  localStorage.setItem("herRiseDailyNote", note);
+
+  const lang = document.getElementById("languageSelect").value;
+  document.getElementById("saveMessage").textContent =
+    dailyTranslations[lang].saved;
+}
+
+  document.getElementById("dailyNote").value =
+    localStorage.getItem("herRiseDailyNote") || "";
+</script>
+
+</body>
+</html>

@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HerRise | Study Space</title>
+
+<style>
+:root {
+  --bg: #110d12;
+  --card: #211720;
+  --accent: #80445f;
+  --accent-light: #e5b4c9;
+  --text: #ffffff;
+  --border: #503243;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 25px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0 20px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+header::after {
+  content: "✧";
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--accent-light);
+  background: var(--bg);
+  padding: 0 10px;
+  font-size: 15px;
+}
+
+#themeSelect {
+  width: 180px;
+  margin: 0;
+}
+
+.logo {
+  color: var(--accent-light);
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px var(--border);
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  letter-spacing: 3px;
+  text-shadow: 0 0 18px var(--accent-light);
+}
+
+.back {
+  color: #e5b4c9;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1250px;
+  width: 92%;
+  margin: 45px auto;
+  animation: fadeIn 0.7s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  color: #e5b4c9;
+}
+
+.subtitle {
+  color: #bdaeb8;
+  line-height: 1.8;
+}
+
+input {
+  width: 100%;
+  padding: 13px;
+  margin: 8px 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: var(--accent-light);
+  box-shadow: 0 0 0 3px rgba(229, 180, 201, 0.12);
+}
+
+input::placeholder {
+  color: #a995a1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+  margin-top: 35px;
+  align-items: stretch;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
+
+  transition: 
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 28px var(--border);
+}
+
+.card h2 {
+  color: var(--accent-light);
+  font-size: 19px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+input {
+  width: 100%;
+  padding: 13px;
+  margin: 8px 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: var(--accent-light);
+  box-shadow: 0 0 0 3px rgba(229, 180, 201, 0.12);
+}
+
+input::placeholder {
+  color: #a995a1;
+}
+
+button {
+  background: var(--accent);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 12px 19px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: var(--accent-light);
+  color: #211720;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(128, 68, 95, 0.25);
+}
+
+.item {
+  padding: 11px;
+  margin-top: 9px;
+  background: var(--card);
+  border-radius: 9px;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.item button {
+  float: left;
+  margin: 0;
+  padding: 5px 9px;
+  background: #653047;
+}
+
+footer {
+  text-align: center;
+  color: #806b78;
+  margin-top: 40px;
+}
+
+@media (max-width: 500px) {
+  body {
+    padding: 15px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .logo {
+    font-size: 27px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+}
+
+label {
+  display: block;
+ color: var(--text);
+  margin-top: 8px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 12px;
+  background: var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+#progressBar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    var(--accent-light)
+  );
+  border-radius: 20px;
+  transition: width 0.4s ease;
+}
+
+#motivationText {
+  color: var(--accent-light);
+  font-size: 15px;
+  margin-top: 12px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">HerRise</div>
+
+  <select id="themeSelect" onchange="changeTheme()">
+    <option value="dark">Dark Coquette 🖤</option>
+    <option value="vintage">Soft Vintage 🌷</option>
+    <option value="midnight">Midnight 💜</option>
+    <option value="sage">Sage Garden 🌿</option>
+  </select>
+
+  <a class="back" href="index.html">← الرئيسية</a>
+</header>
+
+<main class="container">
+  <h1>📚 Study Space</h1>
+
+  <p class="subtitle">
+    خططي لدراستك، رتبي اختباراتك، وحققي أهدافك خطوة بخطوة.
+  </p>
+
+  <section class="grid">
+<div class="card">
+  <h2>📖 موادي الدراسية</h2>
+
+      <input id="subjectInput" placeholder="اسم المادة">
+
+      <button onclick="addSubject()">إضافة مادة</button>
+
+      <div id="subjectList"></div>
+    </div>
+
+    <div class="card">
+      <h2>📝 الاختبارات القادمة</h2>
+
+      <input id="examInput" placeholder="اسم الاختبار">
+
+      <input id="examDate" type="date">
+
+      <button onclick="addExam()">إضافة اختبار</button>
+
+      <div id="examList"></div>
+    </div>
+
+    <div class="card">
+      <h2>🎯 مهام المذاكرة</h2>
+
+      <input id="taskInput" placeholder="ما المهمة التي تريدين إنجازها؟">
+
+      <button onclick="addTask()">إضافة مهمة</button>
+
+      <div id="taskList"></div>
+    </div>
+
+<div class="card">
+  <h2>📅 جدولي الأسبوعي</h2>
+
+  <select id="dayInput">
+    <option value="الأحد">الأحد</option>
+    <option value="الاثنين">الاثنين</option>
+    <option value="الثلاثاء">الثلاثاء</option>
+    <option value="الأربعاء">الأربعاء</option>
+    <option value="الخميس">الخميس</option>
+    <option value="الجمعة">الجمعة</option>
+    <option value="السبت">السبت</option>
+  </select>
+
+  <input id="studySubject" placeholder="اسم المادة">
+
+  <label>وقت البداية</label>
+  <input id="startTime" type="time">
+
+  <label>وقت النهاية</label>
+  <input id="endTime" type="time">
+
+  <button onclick="addStudySession()">إضافة للجدول</button>
+
+  <div id="scheduleList"></div>
+<h3>📊 تقدّمي الدراسي</h3>
+
+<p id="progressText">إنجازك: 0%</p>
+
+<p id="motivationText">
+    🌱 كل إنجاز كبير يبدأ بخطوة صغيرة!
+</p>
+
+<div class="progress-track">
+    <div id="progressBar"></div>
+</div>
+</div>
+<div class="card">
+    <h2>🏆 لوحة إنجازاتي</h2>
+
+    <p>📚 موادي: <span id="subjectCount">0</span></p>
+
+    <p>🎯 المهام المنجزة: <span id="taskCount">0</span></p>
+
+    <p>📅 الحصص المكتملة: <span id="sessionCount">0</span></p>
+
+    <p>✨ نسبة إنجازي: <span id="dashboardPercent">0%</span></p>
+</div>
+  </section>
+
+</main>
+
+<footer>
+  HerRise © 2026 — Your future starts today.
+</footer>
+
+     
+ <script>
+
+// تحميل البيانات المحفوظة
+let subjects = JSON.parse(localStorage.getItem("subjects")) || [];
+let exams = JSON.parse(localStorage.getItem("exams")) || [];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let schedule = JSON.parse(localStorage.getItem("schedule")) || [];
+
+// حفظ البيانات
+function saveData() {
+   localStorage.setItem("schedule", JSON.stringify(schedule));
+  localStorage.setItem("subjects", JSON.stringify(subjects));
+  localStorage.setItem("exams", JSON.stringify(exams));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+function showDashboard() {
+
+    // عدد المواد
+    document.getElementById("subjectCount").textContent =
+        subjects.length;
+
+    // عدد المهام المكتملة
+    let completedTasks = tasks.filter(task =>
+        task.done === true
+    ).length;
+
+    document.getElementById("taskCount").textContent =
+        completedTasks;
+
+    // عدد الحصص المكتملة
+    let completedSessions = schedule.filter(session =>
+        session.done === true
+    ).length;
+
+    document.getElementById("sessionCount").textContent =
+        completedSessions;
+
+    // نسبة إنجاز الجدول
+    let total = schedule.length;
+
+    let percent = total === 0
+        ? 0
+        : Math.round((completedSessions / total) * 100);
+
+    document.getElementById("dashboardPercent").textContent =
+        percent + "%";
+}
+// عرض المواد
+function showSubjects() {
+  let list = document.getElementById("subjectList");
+  list.innerHTML = "";
+
+  subjects.forEach(name => {
+    let item = document.createElement("div");
+    item.className = "item";
+    item.textContent = "📘 " + name;
+    list.appendChild(item);
+  });
+}
+
+function showExams() {
+  let list = document.getElementById("examList");
+  list.innerHTML = "";
+
+  let sortedExams = [...exams];
+
+  sortedExams.sort((a, b) =>
+    new Date(a.date) - new Date(b.date)
+  );
+
+  sortedExams.forEach(exam => {
+    let item = document.createElement("div");
+    item.className = "item";
+
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    let examDate = new Date(exam.date + "T00:00:00");
+    let daysLeft = Math.ceil(
+      (examDate - today) / (1000 * 60 * 60 * 24)
+    );
+
+    let message = "";
+
+    if (daysLeft > 0) {
+      message = "باقي " + daysLeft + " يوم 📅";
+    } else if (daysLeft === 0) {
+      message = "اختبارك اليوم! 💗";
+    } else {
+      message = "انتهى موعد الاختبار";
+    }
+
+    item.textContent =
+      "📝 " + exam.name + " — " + message;
+
+    let deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "حذف 🗑️";
+
+    deleteBtn.onclick = function() {
+      let index = exams.indexOf(exam);
+      exams.splice(index, 1);
+
+      saveData();
+      showExams();
+    };
+
+    item.appendChild(deleteBtn);
+    list.appendChild(item);
+  });
+}
+
+// عرض المهام
+function showTasks() {
+  let list = document.getElementById("taskList");
+  list.innerHTML = "";
+
+  tasks.forEach((task, index) => {
+    let item = document.createElement("div");
+    item.className = "item";
+
+    let checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.style.width = "auto";
+    checkbox.checked = task.done;
+
+    checkbox.addEventListener("change", function() {
+      tasks[index].done = checkbox.checked;
+      saveData();
+      showDashboard();
+    });
+
+    item.appendChild(checkbox);
+    item.append(" " + task.name);
+    list.appendChild(item);
+  });
+}
+
+// إضافة مادة
+function addSubject() {
+  let input = document.getElementById("subjectInput");
+  let name = input.value.trim();
+
+  if (!name) return;
+
+  subjects.push(name);
+  saveData();
+  showSubjects();
+  showDashboard();
+
+  input.value = "";
+}
+
+// إضافة اختبار
+function addExam() {
+  let name = document.getElementById("examInput").value.trim();
+  let date = document.getElementById("examDate").value;
+
+  if (!name || !date) {
+    alert("أدخلي اسم الاختبار وتاريخه");
+    return;
+  }
+
+  exams.push({ name: name, date: date });
+  saveData();
+  showExams();
+
+  document.getElementById("examInput").value = "";
+  document.getElementById("examDate").value = "";
+}
+
+// إضافة مهمة
+function addTask() {
+  let input = document.getElementById("taskInput");
+  let name = input.value.trim();
+
+  if (!name) return;
+
+  tasks.push({ name: name, done: false });
+  saveData();
+  showTasks();
+  showDashboard();
+
+  input.value = "";
+}
+
+// إضافة حصة دراسية
+function addStudySession() {
+  let day = document.getElementById("dayInput").value;
+  let subject = document.getElementById("studySubject").value.trim();
+  let start = document.getElementById("startTime").value;
+  let end = document.getElementById("endTime").value;
+
+  if (!subject || !start || !end) {
+    alert("أكملي جميع المعلومات أولًا");
+    return;
+  }
+
+  if (end <= start) {
+    alert("وقت النهاية يجب أن يكون بعد البداية");
+    return;
+  }
+
+  schedule.push({
+    day: day,
+    subject: subject,
+    start: start,
+    end: end,
+    done: false
+  });
+
+  saveData();
+  showSchedule();
+  showDashboard();
+
+  document.getElementById("studySubject").value = "";
+  document.getElementById("startTime").value = "";
+  document.getElementById("endTime").value = "";
+}
+
+// عرض الجدول الأسبوعي
+function showSchedule() {
+  let list = document.getElementById("scheduleList");
+  list.innerHTML = "";
+
+  let days = [
+    "الأحد", "الاثنين", "الثلاثاء",
+    "الأربعاء", "الخميس", "الجمعة", "السبت"
+  ];
+
+  days.forEach(day => {
+    let sessions = schedule.filter(item => item.day === day);
+
+    if (sessions.length === 0) return;
+
+    let heading = document.createElement("h3");
+    heading.textContent = "📅 " + day;
+    heading.style.color = "var(--accent-light)";
+    list.appendChild(heading);
+
+    sessions.forEach(session => {
+      let index = schedule.indexOf(session);
+
+      let item = document.createElement("div");
+      item.className = "item";
+
+      if (session.done === true) {
+        item.style.opacity = "0.6";
+      }
+
+      item.textContent =
+        "📚 " + session.subject +
+        " | " + session.start +
+        " - " + session.end + " ";
+
+      let doneBtn = document.createElement("button");
+      doneBtn.textContent = session.done
+        ? "إلغاء الإنجاز ↩️"
+        : "تم الإنجاز ✓";
+
+      doneBtn.onclick = function() {
+        session.done = !session.done;
+        saveData();
+        showSchedule();
+        showDashboard();
+      };
+
+      item.appendChild(doneBtn);
+
+      let deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "حذف 🗑️";
+      deleteBtn.style.marginRight = "10px";
+
+      deleteBtn.onclick = function() {
+        schedule.splice(index, 1);
+        saveData();
+        showSchedule();
+        showDashboard();
+      };
+
+      item.appendChild(deleteBtn);
+      list.appendChild(item);
+    });
+  });
+
+  let total = schedule.length;
+  let completed = schedule.filter(session =>
+    session.done === true
+  ).length;
+
+  let percent = total === 0
+    ? 0
+    : Math.round((completed / total) * 100);
+
+  document.getElementById("progressText").textContent =
+    "إنجازك: " + percent + "% (" + completed + " من " + total + ")";
+
+  document.getElementById("progressBar").style.width =
+    percent + "%";
+
+  let message = "";
+
+  if (percent === 0) {
+    message = "🌱 كل إنجاز كبير يبدأ بخطوة صغيرة!";
+  } else if (percent < 50) {
+    message = "💗 بداية جميلة، استمري!";
+  } else if (percent < 100) {
+    message = "🔥 أنتِ تتقدمين بشكل رائع!";
+  } else {
+    message = "🏆 مذهلة! أنهيتِ كل حصصك!";
+  }
+
+  document.getElementById("motivationText").textContent = message;
+}
+
+// عرض البيانات عند فتح الصفحة
+showSubjects();
+showExams();
+showTasks();
+showSchedule();
+showDashboard();
+
+// ألوان الثيمات
+const themes = {
+  dark: {
+    bg: "#110d12",
+    card: "#211720",
+    accent: "#80445f",
+    accentLight: "#e5b4c9",
+    text: "#ffffff",
+    border: "#503243"
+  },
+
+  vintage: {
+    bg: "#f8e8ee",
+    card: "#fff7fa",
+    accent: "#c77d9b",
+    accentLight: "#a64f75",
+    text: "#49333b",
+    border: "#e8bdce"
+  },
+
+  midnight: {
+    bg: "#111426",
+    card: "#20243d",
+    accent: "#6656a8",
+    accentLight: "#c5b7f0",
+    text: "#ffffff",
+    border: "#45416d"
+  },
+
+  sage: {
+    bg: "#dceaf3",
+    card: "#edf5fa",
+    accent: "#628eaa",
+    accentLight: "#3f6d88",
+    text: "#293f50",
+    border: "#a9c5d7"
+  }
+};
+
+// تغيير الثيم
+function changeTheme() {
+  let selected = document.getElementById("themeSelect").value;
+  let colors = themes[selected];
+
+  for (let color in colors) {
+    let variableName = "--" + color.replace(
+      /[A-Z]/g,
+      letter => "-" + letter.toLowerCase()
+    );
+
+    document.documentElement.style.setProperty(
+      variableName,
+      colors[color]
+    );
+  }
+
+  localStorage.setItem("selectedTheme", selected);
+}
+
+// استعادة الثيم المحفوظ
+let savedTheme = localStorage.getItem("selectedTheme") || "dark";
+
+document.getElementById("themeSelect").value = savedTheme;
+changeTheme();
+
+</script>
+
+</body>
+</html>

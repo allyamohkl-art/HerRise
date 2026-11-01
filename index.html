@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">HerRise | Home</title>
+
+  <style>
+    :root {
+      --bg: #110d12;
+      --card: #211720;
+      --accent: #80445f;
+      --light: #e5b4c9;
+      --text: #ffffff;
+      --border: #503243;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 25px;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      color: var(--light);
+      font-size: 38px;
+      letter-spacing: 3px;
+      font-weight: bold;
+    }
+
+    .tagline {
+      color: #bdaeb8;
+      line-height: 1.8;
+    }
+
+    .welcome {
+      max-width: 850px;
+      margin: 55px auto 35px;
+      text-align: center;
+    }
+
+    .welcome h1 {
+      color: var(--light);
+      font-size: 32px;
+    }
+
+    .welcome p {
+      color: #bdaeb8;
+      line-height: 1.9;
+    }
+
+    .grid {
+      max-width: 1000px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--light);
+    }
+
+    .card h2 {
+      color: var(--light);
+      font-size: 20px;
+    }
+
+    .card p {
+      color: #bdaeb8;
+      line-height: 1.7;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 11px 22px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .card a:hover {
+      background: var(--light);
+      color: #211720;
+    }
+
+    footer {
+      text-align: center;
+      color: #806b78;
+      margin-top: 55px;
+      padding: 20px;
+    }
+
+.mainNav {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #211720;
+  border: 1px solid #503243;
+  border-radius: 16px;
+}
+
+.mainNav a {
+  color: #e5b4c9;
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.mainNav a:hover {
+  background: #80445f;
+  color: white;
+}
+  </style>
+</head>
+
+<body>
+
+ <header>
+  <div class="logo">HerRise ✧</div>
+
+  <select id="languageSelect" onchange="changeLanguage()">
+    <option value="ar">العربية 🇸🇦</option>
+    <option value="en">English 🇬🇧</option>
+    <option value="tr">Türkçe 🇹🇷</option>
+    <option value="es">Español 🇪🇸</option>
+  </select>
+
+ <p class="tagline" id="taglineText">
+    Become stronger. Grow wiser. Be yourself.
+  </p>
+</header>
+<nav class="mainNav">
+  <a href="index.html" id="navHome">⌂ Home</a>
+  <a href="study.html" id="navStudy">▤ Study Space</a>
+  <a href="daily.html" id="navDaily">✿ Daily Growth</a>
+  <a href="#" id="navDiscover">❀ Discover Yourself</a>
+   <a href="community.html" id="navCommunity">♡ Her Community</a>
+  <a href="#" id="navFocus">☾ Focus Space</a>
+ <a href="profile.html" id="navProfile">♙ Profile</a>
+</nav>
+
+  <main>
+    <section class="welcome">
+     <h1 id="welcomeTitle">مرحبًا بكِ في HerRise ♡</h1>
+      <p id="welcomeText">
+        مساحة خاصة بكِ للتعلم والتطور واكتشاف نفسك.
+        ابدئي رحلتك، وخذي كل يوم خطوة جديدة نحو أهدافك.
+      </p>
+    </section>
+
+    <section class="grid">
+
+      <div class="card">
+        <h2 id="studyTitle">📚 Study Space</h2>
+<p id="studyDescription">نظّمي دراستك ومهامك واختباراتك.</p>
+<a href="study.html" id="studyLink">افتحي القسم</a>
+      </div>
+
+     <div class="card">
+  <h2 id="dailyTitle">🌷 Daily Growth</h2>
+  <p id="dailyDescription">نصائح يومية وأفكار تساعدك على التطور.</p>
+  <a href="daily.html" id="dailyLink">افتحي القسم</a>
+</div>
+
+      <div class="card">
+       <h2 id="discoverTitle">🧠 Discover Yourself</h2>
+<p id="discoverDescription">اكتشفي اهتماماتك وأفكارك ونقاط قوتك.</p>
+      </div>
+
+      <div class="card">
+        <h2 id="focusTitle">🌙 Focus Space</h2>
+<p id="focusDescription">وقت هادئ للتركيز وإنجاز أهدافك.</p>
+      </div>
+
+    </section>
+  </main>
+
+ <footer id="footerText">
+  HerRise © 2026 — Your future starts today.
+</footer>
+<script>
+const translations = {
+
+  ar: {
+footerText: "HerRise © 2026 — مستقبلك يبدأ اليوم.",
+pageTitle: "HerRise | الرئيسية",
+navHome: "⌂ الرئيسية",
+navStudy: "▤ مساحة الدراسة",
+navDaily: "✿ التطور اليومي",
+navDiscover: "❀ اكتشفي نفسك",
+navFocus: "☾ مساحة التركيز",
+navProfile: "♙ الملف الشخصي",
+navCommunity: "♡ مجتمع HerRise",
+    tagline: "كوني أقوى. ازرعي الحكمة. كوني نفسك.",
+    welcomeTitle: "مرحبًا بكِ في HerRise ♡",
+    welcomeText: "مساحة خاصة بكِ للتعلم والتطور واكتشاف نفسك. ابدئي رحلتك، وخذي كل يوم خطوة جديدة نحو أهدافك.",
+    studyTitle: "📚 مساحة الدراسة",
+    studyDescription: "نظّمي دراستك ومهامك واختباراتك.",
+    studyLink: "افتحي القسم",
+    dailyTitle: "🌷 التطور اليومي",
+    dailyDescription: "نصائح يومية وأفكار تساعدك على التطور.",
+    dailyLink: "افتحي القسم",
+    discoverTitle: "🧠 اكتشفي نفسك",
+    discoverDescription: "اكتشفي اهتماماتك وأفكارك ونقاط قوتك.",
+    focusTitle: "🌙 مساحة التركيز",
+    focusDescription: "وقت هادئ للتركيز وإنجاز أهدافك."
+  },
+  en: {
+footerText: "HerRise © 2026 — Your future starts today.",
+pageTitle: "HerRise | Home",
+navHome: "⌂ Home",
+navStudy: "▤ Study Space",
+navDaily: "✿ Daily Growth",
+navDiscover: "❀ Discover Yourself",
+navFocus: "☾ Focus Space",
+navProfile: "♙ Profile",
+navCommunity: "♡ Her Community",
+    tagline: "Become stronger. Grow wiser. Be yourself.",
+    welcomeTitle: "Welcome to HerRise ♡",
+    welcomeText: "A space to learn, grow, and discover yourself. Start your journey with one new step every day.",
+    studyTitle: "📚 Study Space",
+    studyDescription: "Organize your studies, tasks, and exams.",
+    studyLink: "Open section",
+    dailyTitle: "🌷 Daily Growth",
+    dailyDescription: "Daily tips and ideas to help you grow.",
+      dailyLink: "Open section",
+    discoverTitle: "🧠 Discover Yourself",
+    discoverDescription: "Explore your interests, thoughts, and strengths.",
+    focusTitle: "🌙 Focus Space",
+    focusDescription: "A calm space to focus and reach your goals."
+  },
+  tr: {
+footerText: "HerRise © 2026 — Geleceğin bugün başlıyor.",
+pageTitle: "HerRise | Ana Sayfa",
+navHome: "⌂ Ana Sayfa",
+navStudy: "▤ Çalışma Alanı",
+navDaily: "✿ Günlük Gelişim",
+navDiscover: "❀ Kendini Keşfet",
+navFocus: "☾ Odaklanma Alanı",
+navProfile: "♙ Profil",
+navCommunity: "♡ Her Topluluğu",
+    tagline: "Güçlen. Bilgeliğini geliştir. Kendin ol.",
+    welcomeTitle: "HerRise'a hoş geldin ♡",
+    welcomeText: "Öğrenmek, gelişmek ve kendini keşfetmek için özel bir alan. Yolculuğuna başla ve her gün yeni bir adım at.",
+    studyTitle: "📚 Çalışma Alanı",
+    studyDescription: "Derslerini, görevlerini ve sınavlarını düzenle.",
+    studyLink: "Bölümü aç",
+    dailyTitle: "🌷 Günlük Gelişim",
+    dailyDescription: "Gelişmene yardımcı olacak günlük öneriler ve fikirler.",
+      dailyLink: "Bölümü aç",
+    discoverTitle: "🧠 Kendini Keşfet",
+    discoverDescription: "İlgi alanlarını, düşüncelerini ve güçlü yönlerini keşfet.",
+    focusTitle: "🌙 Odaklanma Alanı",
+    focusDescription: "Odaklanmak ve hedeflerine ulaşmak için sakin bir alan."
+  },
+  es: {
+footerText: "HerRise © 2026 — Tu futuro comienza hoy.",
+pageTitle: "HerRise | Inicio",
+navHome: "⌂ Inicio",
+navStudy: "▤ Espacio de estudio",
+navDaily: "✿ Crecimiento diario",
+navDiscover: "❀ Descúbrete",
+navFocus: "☾ Espacio de concentración",
+navProfile: "♙ Perfil",
+navCommunity: "♡ Comunidad HerRise",
+    tagline: "Sé más fuerte. Crece en sabiduría. Sé tú misma.",
+    welcomeTitle: "Bienvenida a HerRise ♡",
+    welcomeText: "Un espacio para aprender, crecer y descubrirte. Comienza tu camino con un nuevo paso cada día.",
+    studyTitle: "📚 Espacio de estudio",
+    studyDescription: "Organiza tus estudios, tareas y exámenes.",
+      dailyLink: "Abrir sección",
+    studyLink: "Abrir sección",
+    dailyTitle: "🌷 Crecimiento diario",
+    dailyDescription: "Consejos e ideas diarias para ayudarte a crecer.",
+    discoverTitle: "🧠 Descúbrete",
+    discoverDescription: "Explora tus intereses, pensamientos y fortalezas.",
+    focusTitle: "🌙 Espacio de concentración",
+    focusDescription: "Un espacio tranquilo para concentrarte y alcanzar tus metas."
+  }
+};
+
+function changeLanguage() {
+  const lang = document.getElementById("languageSelect").value;
+  const t = translations[lang];
+
+  document.getElementById("navHome").textContent = t.navHome;
+  document.getElementById("navStudy").textContent = t.navStudy;
+  document.getElementById("navDaily").textContent = t.navDaily;
+  document.getElementById("navDiscover").textContent = t.navDiscover;
+  document.getElementById("navFocus").textContent = t.navFocus;
+  document.getElementById("navProfile").textContent = t.navProfile;
+  document.getElementById("navCommunity").textContent = t.navCommunity;
+
+  document.getElementById("taglineText").textContent = t.tagline;
+  document.getElementById("welcomeTitle").textContent = t.welcomeTitle;
+  document.getElementById("welcomeText").textContent = t.welcomeText;
+  document.getElementById("studyTitle").textContent = t.studyTitle;
+  document.getElementById("studyDescription").textContent = t.studyDescription;
+  document.getElementById("studyLink").textContent = t.studyLink;
+  document.getElementById("dailyTitle").textContent = t.dailyTitle;
+  document.getElementById("dailyDescription").textContent = t.dailyDescription;
+  document.getElementById("dailyLink").textContent = t.dailyLink;
+  document.getElementById("discoverTitle").textContent = t.discoverTitle;
+  document.getElementById("discoverDescription").textContent = t.discoverDescription;
+  document.getElementById("focusTitle").textContent = t.focusTitle;
+  document.getElementById("focusDescription").textContent = t.focusDescription;
+  document.getElementById("footerText").textContent = t.footerText;
+  document.getElementById("pageTitle").textContent = t.pageTitle;
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+  localStorage.setItem("herRiseLanguage", lang);
+}
+
+window.addEventListener("DOMContentLoaded", function() {
+  const savedLanguage = localStorage.getItem("herRiseLanguage") || "ar";
+  document.getElementById("languageSelect").value = savedLanguage;
+  changeLanguage();
+});
+</script>
+
+</body>
+</html>
