@@ -171,23 +171,23 @@
 <section class="community-section" id="authSection">
     <h2>Welcome to HerRise ♡</h2>
 
-    <input
-        type="email"
-        id="authEmail"
-        placeholder="Email address"
-    >
+    <input type="email" id="authEmail" placeholder="Email address">
 
-    <input
-        type="password"
-        id="authPassword"
-        placeholder="Password"
-    >
+    <input type="password" id="authPassword" placeholder="Password">
 
     <button onclick="signUp()">Create Account</button>
     <button onclick="signIn()">Log In</button>
-    <button onclick="signOut()">Log Out</button>
 
     <p id="authMessage"></p>
+</section>
+
+<section class="community-section" id="accountSection" style="display:none;">
+    <h2 id="accountWelcome">Welcome to HerRise ♡</h2>
+    <button onclick="toggleSettings()">⚙ Settings</button>
+
+    <div id="accountSettings" style="display:none;">
+        <button onclick="signOut()">Log Out</button>
+    </div>
 </section>
 
 <section class="community-section">
@@ -381,6 +381,14 @@ const supabaseClient = window.supabase.createClient(
 </script>
 
 <script>
+
+function toggleSettings() {
+    const settings = document.getElementById("accountSettings");
+
+    settings.style.display =
+        settings.style.display === "none" ? "block" : "none";
+}
+
 async function signUp() {
     const email = document.getElementById("authEmail").value.trim();
     const password = document.getElementById("authPassword").value;
@@ -423,6 +431,25 @@ async function signOut() {
         ? error.message
         : "You have logged out.";
 }
+function updateAuthUI(session) {
+    const authSection = document.getElementById("authSection");
+    const accountSection = document.getElementById("accountSection");
+    const welcome = document.getElementById("accountWelcome");
+
+    if (session) {
+        authSection.style.display = "none";
+        accountSection.style.display = "block";
+        welcome.textContent = "Welcome to HerRise ♡";
+    } else {
+        authSection.style.display = "block";
+        accountSection.style.display = "none";
+    }
+}
+
+supabaseClient.auth.onAuthStateChange((event, session) => {
+    updateAuthUI(session);
+});
+
 </script>
 
 </body>
